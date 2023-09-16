@@ -30,7 +30,7 @@ module.exports = class userDataController {
             expires: new Date(Date.now() + 2 * 1000),
             httpOnly: true,
             sameSite: 'none',
-            secure: true
+            secure: 'auto'
         })
         restResponse.status(200).json({Status: 'Success'})
     }

@@ -40,7 +40,7 @@ class userDataService {
                     ),
                     httpOnly: true,
                     sameSite: 'none',
-                    secure: true
+                    secure: 'auto'
                 }
 
                 response.statusCode = 200
