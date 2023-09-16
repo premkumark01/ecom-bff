@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const ProcessListener = require('./foundation/common/listeners/process-event-listener')
 const Middlewares = require('./foundation/middleware/middlewares')
 const Router = require('./foundation/common/routes/router')
@@ -6,7 +7,13 @@ const configLoader = require('./foundation/common/utilities/config-loader')
 
 
 const app = module.exports = express()
-let port = 80
+app.use(
+    cors({
+      origin: true,
+      credentials: true,
+    })
+  );
+let port = 8080
 
 /**
  * Step 1: Listen to process events

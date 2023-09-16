@@ -38,7 +38,9 @@ class userDataService {
                     expires: new Date(
                         Date.now() + process.env.JWT_COOKIE_EXPIRES * 24 * 60 * 60 * 1000
                     ),
-                    httpOnly: true
+                    httpOnly: true,
+                    sameSite: 'none',
+                    secure: true
                 }
 
                 response.statusCode = 200
@@ -115,7 +117,7 @@ class userDataService {
                 let param = [decode.id]
                 let queryResult = await sqlService.executeQuery(query, param)
                 if (queryResult.length === 0) {
-                    response.statusCode = 400
+                    response.statusCode = 200
                     response.message = {
                         Status: 'Failiure'
                     }
@@ -124,14 +126,14 @@ class userDataService {
                     response.message = {
                         Status: 'Success'
                     }
-                    req.user = queryResult[0];
+                    response.user = queryResult[0];
                 }
                 return response
             } catch (error) {
                 console.log(error)
             }
         } else {
-            response.statusCode = 400
+            response.statusCode = 200
             response.message = {
                 Status: 'Failiure'
             }

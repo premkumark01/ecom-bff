@@ -28,7 +28,9 @@ module.exports = class userDataController {
     async userLogout(restRequest, restResponse) {
         restResponse.cookie('jwt', 'logout', {
             expires: new Date(Date.now() + 2 * 1000),
-            httpOnly: true
+            httpOnly: true,
+            sameSite: 'none',
+            secure: true
         })
         restResponse.status(200).json({Status: 'Success'})
     }
